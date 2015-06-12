@@ -1,0 +1,24 @@
+{
+    "id": "{{ cond_id }}",
+    "patient": {
+        "reference": "Patient/{{ pat_id }}",
+        "display": "{{ name.family }} {{ name.given }}"
+    },
+    "onsetDateTime": "2014-01-01",
+    "code": {
+        "coding": {
+            "system": "http://snomed.info/sct",
+            "code": "{{ condition.snomed }}",
+            "display": "{{ condition.display }}"
+        },
+        "text": "{{ condition.text }}"
+    },
+    "clinicalStatus": "confirmed",
+    "category": {
+        "coding": [{
+            "system": "http://snomed.info/sct",
+            "code": "39154008",
+            "display": "Clinical diagnosis"
+        }]
+    }
+}

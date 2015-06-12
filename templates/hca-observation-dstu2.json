@@ -1,0 +1,48 @@
+{
+    "id": "hcao{{ rand_id() }}",
+    "subject": {
+        "reference": "Patient/{{ pat_id }}",
+        "display": "{{ name.family }} {{ name.given }}"
+    },
+    "modifierExtension": [{
+        "url": "http://fhir-registry.smarthealthit.org/StructureDefinition/gene-expression-in",
+        "valueResource": {
+            "reference": "Condition/{{ cond_id }}",
+            "display": "{{ condition.text }}"
+        }
+    }],
+    "code": {
+        "coding": [{
+            "system": "http://www.genenames.org",
+            "code": "{{ observation.hgnc }}",
+            "display": "{{ observation.display }}"
+        }],
+        "text": "{{ observation.text }}"
+    },
+    {%- if "HGNC:3430" == observation.hgnc %}
+    "valueString": "{{ observation.result }}",
+    "method": {
+        "coding": [{
+            "system": "",
+            "code": ""
+        }],
+        "display": "FISH"
+    },
+    {%- else %}
+    "valueQuantity": {
+        "value": {{ observation.quantity }},
+        "units": "%",
+        "system": "http://unitsofmeasure.org",
+        "code": "%"
+    },
+    {%- endif %}
+    "interpretation": {
+        "coding": [{
+            "system": "http://hl7.org/fhir/v2/0078",
+            "code": "{% if 'Positive' == observation.result %}POS{% else %}{% if 'Negative' == observation.result %}NEG{% else %}IND{% endif %}{% endif %}",
+            "display": "{% if 'Positive' == observation.result %}Positive{% else %}{% if 'Negative' == observation.result %}Negative{% else %}Indeterminate{% endif %}{% endif %}"
+        }]
+    },
+    "status": "final",
+    "reliability": "ok"
+}

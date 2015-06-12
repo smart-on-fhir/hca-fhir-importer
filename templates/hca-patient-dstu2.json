@@ -1,0 +1,17 @@
+{
+    "id": "{{ pat_id }}",
+    "name": [{
+        "family": ["{{ name.family }}"],
+        "given": ["{{ name.given }}"]
+    }],
+    "gender": "{{ Sex }}",
+    "birthDate": "{{ bday.isoformat() }}",
+    "address": [{
+        "use": "home",
+        "line": ["One Park Plaza"],
+        "city": "Nashville",
+        "postalCode": "37203",
+        "state": "TN",
+        "country": "USA"
+    }]
+}

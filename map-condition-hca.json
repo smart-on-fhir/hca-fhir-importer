@@ -1,0 +1,34 @@
+{
+	"DCIS": {
+		"snomed": "399935008",
+		"display": "Ductal carcinoma in situ - category"
+	},
+	"IDC": {
+		"snomed": "448952004",
+		"display": "Infiltrating duct carcinoma of female breast"
+	},
+	"ILC": {
+		"snomed": "278054005",
+		"display": "Infiltrating lobular carcinoma of breast"
+	},
+	"IMC": {
+		"snomed": "189336000",
+		"display": "Carcinoma in situ of breast"
+	},
+	"Inflammatory": {
+		"snomed": "254840009",
+		"display": "Inflammatory carcinoma of breast"
+	},
+	"Mucinous": {
+		"snomed": "444712000",
+		"display": "Mucinous carcinoma of breast"
+	},
+	"Pagets": {
+		"snomed": "2985005",
+		"display": "Paget's disease, mammary"
+	},
+	"Tubular": {
+		"snomed": "128700001",
+		"display": "Infiltrating duct and tubular carcinoma"
+	}
+}
