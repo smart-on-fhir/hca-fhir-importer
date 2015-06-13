@@ -1,0 +1,16 @@
+{
+	"id": "hcap{{ rand_id() }}",
+	"patient": {
+		"reference": "Patient/{{ pat_id }}",
+		"display": "{{ name.family }} {{ name.given }}"
+	},
+	"status": "completed",
+	"type": {
+		"coding": [{
+			"system": "http://snomed.info/sct",
+			"code": "{{ procedure.snomed }}",
+			"display": "{{ procedure.display }}"
+		}],
+		"text": "{{ procedure.text }}"
+	}
+}

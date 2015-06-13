@@ -6,18 +6,22 @@ import csv
 import json
 import uuid
 import jinja2
+import logging
 import datetime
 
 from random import random as rand
 
 suffix = '-dstu2'
 
-names_family = ["Bachmann", "Berger", "Cannon", "Schmidt", "Schmutzhauser", "Weizman"]
-names_females = ["Christy", "Jeanine", "Julie", "Rachel", "Magda", "Marian"]
-names_males = ["Ehrlich", "Jerome", "Henry", "Richard", "Ted", "Zhou"]
+names_family = ["Bachmann", "Belson", "Berger", "Cannon", "Gregory", "Hendricks", "Schmutzhauser", "Weisman"]
+names_females = ["Christy", "Elizabeth", "Emilie", "Jeanine", "Julie", "Magda", "Monica", "Rachel"]
+names_males = ["Ehrlich", "Jerome", "Gavin", "Henry", "Peter", "Richard", "Ted", "Zhou"]
 
 with io.open('map-condition-hca.json', 'r') as h:
 	map_conditions = json.load(h)
+
+with io.open('map-procedure-hca.json', 'r') as h:
+	map_procedures = json.load(h)
 
 
 def rand_id():
@@ -40,12 +44,13 @@ def populate_demographics(data):
 
 def populate_conditions(data):
 	data['cond_id'] = 'hcac' + rand_id()
-	mapped = map_conditions[data['Diagnosis name']]
-	data['condition'] = {
-		'text': data['Diagnosis name'],
-		'snomed': mapped['snomed'],
-		'display': mapped['display'],
-	}
+	if 'Diagnosis name' in data:
+		mapped = map_conditions[data['Diagnosis name'].lower()]
+		data['condition'] = {
+			'text': data['Diagnosis name'],
+			'snomed': mapped['snomed'],
+			'display': mapped['display'],
+		}
 	return data
 
 def populate_observations(data):
@@ -74,6 +79,16 @@ def populate_observations(data):
 		data['observations'] = obs
 	return data
 
+def populate_procedures(data):
+	if 'Surgery detail' in data:
+		mapped = map_procedures[data['Surgery detail'].lower()]
+		data['procedure'] = {
+			'snomed': mapped['snomed'],
+			'display': mapped['display'],
+			'text': data['Surgery detail'],
+		}
+	return data
+
 def render(row, template, observation=None):
 	print(template.render(rand_id=rand_id, observation=observation, **row))
 	
@@ -88,25 +103,28 @@ with io.open('import-hca.csv', 'r') as csvfile:
 	tpl_patient = tplenv.get_template('hca-patient{}.json'.format(suffix))
 	tpl_condition = tplenv.get_template('hca-condition{}.json'.format(suffix))
 	tpl_observation = tplenv.get_template('hca-observation{}.json'.format(suffix))
+	tpl_procedure = tplenv.get_template('hca-procedure{}.json'.format(suffix))
 	
 	# loop
 	for row in f:
-		
-		# header
 		if head is None:
 			head = row
 		
 		# one row, one patient
 		else:
+			logging.debug("Processing row {}".format(row[0]))
 			data = dict(zip(head, row))
 			data = populate_demographics(data)
 			data = populate_conditions(data)
 			data = populate_observations(data)
+			data = populate_procedures(data)
 			
 			render(data, tpl_patient)
 			render(data, tpl_condition)
 			for obs in data['observations']:
 				render(data, tpl_observation, obs)
+			if data.get('procedure'):
+				render(data, tpl_procedure)
 			break
 
 print('->  Done')

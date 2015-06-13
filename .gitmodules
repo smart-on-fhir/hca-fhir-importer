@@ -1,0 +1,3 @@
+[submodule "client-py"]
+	path = client-py
+	url = https://github.com/smart-on-fhir/client-py.git

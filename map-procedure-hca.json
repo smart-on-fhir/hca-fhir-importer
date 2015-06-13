@@ -1,0 +1,110 @@
+{
+	"axillary lymph node dissection": {
+		"snomed": "234254000",
+		"display": "Excision of axillary lymph nodes"
+	},
+	"bilateral mastectomy w/sn": {
+		"snomed": "14714006",
+		"display": "Bilateral mastectomy with excision of bilateral regional lymph nodes"
+	},
+	"bilateral mastectomy w/o sn": {
+		"snomed": "27865001",
+		"display": "Bilateral mastectomy"
+	},
+	"excisional biopsy": {
+		"snomed": "8889005",
+		"display": "Excisional biopsy"
+	},
+	"lumpectomy w/ sn": {
+		"snomed": "392021009",
+		"display": "Lumpectomy of breast"
+	},
+	"lumpectomy w/o sn": {
+		"snomed": "392021009",
+		"display": "Lumpectomy of breast"
+	},
+	"modified radical mastectomy": {
+		"snomed": "406505007",
+		"display": "Modified radical mastectomy"
+	},
+	"nipple reconstruction": {
+		"snomed": "387628008",
+		"display": "Nipple reconstruction"
+	},
+	"nipple sparing mastectomy w/sn": {
+		"snomed": "70183006",
+		"display": "Nipple preserving subcutaneous mastectomy"
+	},
+	"nipple sparing mastectomy w/o sn": {
+		"snomed": "70183006",
+		"display": "Nipple preserving subcutaneous mastectomy"
+	},
+	"other": {
+		"snomed": "",
+		"display": "Other"
+	},
+	"partial mastectomy w/sn": {
+		"snomed": "35482003",
+		"display": "Partial mastectomy with axillary lymphadenectomy"
+	},
+	"partial mastectomy w/o sn": {
+		"snomed": "64368001",
+		"display": "Partial mastectomy"
+	},
+	"port placement ": {
+		"snomed": "80402001",
+		"display": "Insertion of implantable venous access port"
+	},
+	"port placement 2": {
+		"snomed": "312376000",
+		"display": "Insertion of Port-a-cath"
+	},
+	"port removal": {
+		"snomed": "18305008",
+		"display": "Removal of implantable venous access port"
+	},
+	"port removal 2": {
+		"snomed": "312379007",
+		"display": "Removal of Port-a-cath"
+	},
+	"prophylactic mastectomy w/o sn": {
+		"snomed": "447421006",
+		"display": "Prophylactic mastectomy"
+	},
+	"prophylactic mastectomy w/ sn": {
+		"snomed": "447421006",
+		"display": "Prophylactic mastectomy"
+	},
+	"re-excision": {
+		"snomed": "395165008",
+		"display": "Re-excision of breast for clearance of tumor margins"
+	},
+	"sentinel lymph node biopsy": {
+		"snomed": "396487001",
+		"display": "Sentinel lymph node biopsy"
+	},
+	"simple mastectomy w/sn": {
+		"snomed": "447135002",
+		"display": "Simple mastectomy with axillary lymph node sampling"
+	},
+	"simple mastectomy w/o sn": {
+		"snomed": "172043006",
+		"display": "Simple mastectomy"
+	},
+	"skin sparing mastectomy w/sn": {
+		"snomed": "428564008",
+		"display": "Skin sparing mastectomy"
+	},
+	"skin sparing mastectomy w/o sn": {
+		"snomed": "428564008",
+		"display": "Skin sparing mastectomy"
+	},
+	"subcutaneous mastectomy w/sn": {
+		"snomed": "70183006",
+		"display": "Subcutaneous mastectomy"
+	},
+	"subcutaneous mastectomy w/o sn": {
+		"snomed": "70183006",
+		"display": "Subcutaneous mastectomy"
+	}
+}
