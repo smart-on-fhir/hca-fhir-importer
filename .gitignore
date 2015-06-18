@@ -2,5 +2,3 @@ env
 *.pyc
 __pycache__
 
-import-hca.csv
-

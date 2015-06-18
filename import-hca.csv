@@ -1,0 +1,101 @@
+PtID,age,Sex,Race,Diagnosis name,Her2Neu FISH,Receptors ER,rlReceptorsER Pct,Receptors PR,rlReceptorsPR Pct,T Code,M Code,N Code,Surgery detail,Chemo drug 1,Chemo drug 2,Chemo drug 3,Endocrine therapy,Radiation therapy,Abs Neutrophil Count (x10*3/uL),SBP,CHF,Allergy,Platelets (x10*3),eGFR (ml/min)
+1,52,female,White or Caucasian,IDC,negative,positive,60,positive,13,T1B,M0,N0,Lumpectomy w/ SN,,Fluorouracil,Paclitaxel (Taxol),Anastrozole (Arimidex),Positive,5.1,121,Negative,None,304,30-60
+2,25,female,Black or African American,ILC,positive,positive,72,positive,23,T2,M1,N1,Partial Mastectomy w/ SN,Trastuzumab (Herceptin),Gemcitabine (Gemzar),,Raloxifene,Positive,3.7,150,Positive,None,257,>60
+3,45,female,White or Caucasian,IMC,positive,negative,0,positive,95,T1B,M0,N0,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),,Positive,1.5,114,Negative,PCN,291,30-60
+4,79,female,White or Caucasian,Inflammatory,negative,negative,0,negative,0,T3,M0,N0,Modified Radical Mastectomy,Carboplatin (Paraplatin),,,,Negative,4.9,151,Negative,None,146,>60
+5,57,female,White or Caucasian,IDC,negative,positive,62,positive,34,T2,M0,N0,Bilateral Mastectomy w/SN,Gemcitabine (Gemzar),,,Tamoxifen,Positive,3.3,101,Negative,None,357,>60
+6,32,male,White or Caucasian,Pagets,positive,positive,50,positive,24,T1C,M0,N0,Lumpectomy w/ SN,Paclitaxel (Taxol),,,Exemestane (Aromasin),Positive,3.0,110,Negative,None,302,
+7,70,female,Black or African American,DCIS,positive,positive,5,positive,89,Tis,M0,N0,Skin Sparing Mastectomy w/ SN,,,,Exemestane (Aromasin),Negative,1.2,157,Negative,None,364,>60
+8,35,female,White or Caucasian,DCIS,positive,positive,36,positive,25,Tis,M0,N0,Lumpectomy w/ SN,,,Trastuzumab (Herceptin),Raloxifene,Negative,4.7,170,Negative,None,130,>60
+9,68,female,White or Caucasian,IDC,positive,positive,25,positive,68,Tx,M1,N1,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Trastuzumab (Herceptin),Exemestane (Aromasin),Negative,2.5,144,Negative,PCN,147,>60
+10,64,female,Black or African American,IDC,negative,positive,86,positive,66,T1B,M0,N0,Lumpectomy w/o SN,Cyclophosphamide (Cytoxan),,,,Positive,3.7,125,Negative,PCN,230,30-60
+11,50,female,White or Caucasian,ILC,negative,negative,0,positive,30,T2,M0,N0,Modified Radical Mastectomy,,,,,Positive,4.7,163,Negative,None,273,>60
+12,38,female,White or Caucasian,IDC,negative,positive,95,positive,7,T1C,M0,N0,Lumpectomy w/ SN,,,,Tamoxifen,Positive,3.8,167,Negative,None,317,<30
+13,36,female,White or Caucasian,DCIS,equivocal,positive,20,positive,82,Tis,M0,N0,Lumpectomy w/ SN,,,,Anastrozole (Arimidex),Negative,5.0,150,Negative,None,133,>60
+14,28,female,Black or African American,IDC,equivocal,positive,54,positive,19,T1A,M0,N0,Lumpectomy w/ SN,,,,Raloxifene,Positive,5.5,118,Negative,PCN,195,30-60
+15,50,female,White or Caucasian,IDC,negative,negative,0,positive,74,T1C,M0,N0,Lumpectomy w/ SN,,,,,Positive,1.5,103,Negative,None,328,30-60
+16,74,female,White or Caucasian,ILC,positive,positive,55,negative,2,T2,M1,N1,Lumpectomy w/ SN,,Gemcitabine (Gemzar),,Exemestane (Aromasin),Positive,2.9,162,Negative,None,347,>60
+17,41,female,White or Caucasian,IDC,positive,positive,48,positive,52,T1B,M0,N0,Lumpectomy w/ SN,,,,,Positive,5.6,100,Negative,PCN,355,30-60
+18,68,female,White or Caucasian,DCIS,negative,positive,59,positive,16,Tis,M0,N0,Lumpectomy w/o SN,,,,Exemestane (Aromasin),Negative,3.8,169,Negative,PCN,111,>60
+19,44,female,White or Caucasian,IDC,negative,positive,13,positive,95,T2,M0,N0,Bilateral Mastectomy w/SN,Carboplatin (Paraplatin),,,Tamoxifen,Positive,5.4,128,Negative,None,267,>60
+20,27,female,White or Caucasian,IDC,negative,positive,20,positive,37,T1C,M0,N0,Lumpectomy w/ SN,,,,,Positive,4.8,89,Negative,None,163,<30
+21,50,female,White or Caucasian,IDC,negative,positive,90,positive,15,T2,M0,N0,Bilateral Mastectomy w/SN,Carboplatin (Paraplatin),,,Exemestane (Aromasin),Positive,3.0,140,Negative,None,242,>60
+22,80,female,Black or African American,ILC,negative,positive,21,positive,51,T4,M0,N0,Lumpectomy w/ SN,,,,Tamoxifen,Negative,6.0,156,Negative,None,397,>60
+23,32,female,White or Caucasian,IDC,positive,negative,0,positive,63,T1A,M0,N0,Lumpectomy w/o SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),,Positive,4.3,121,Negative,None,267,30-60
+24,78,female,White or Caucasian,Inflammatory,equivocal,positive,79,positive,15,T3,M0,N0,Lumpectomy w/ SN,,,,,Negative,3.3,135,Negative,None,238,>60
+25,69,female,Black or African American,IDC,positive,positive,18,positive,91,T1C,M0,N0,Modified Radical Mastectomy,,,,Exemestane (Aromasin),Positive,4.5,110,Negative,None,346,<30
+26,64,female,White or Caucasian,IDC,positive,positive,53,positive,67,T1C,M0,N0,Lumpectomy w/ SN,,,,Anastrozole (Arimidex),Positive,3.7,169,Negative,None,169,30-60
+27,82,male,White or Caucasian,ILC,positive,positive,49,negative,4,T1B,M0,N0,Skin Sparing Mastectomy w/ SN,Paclitaxel (Taxol),Fluorouracil,,Raloxifene,Positive,2.1,137,Positive,PCN,400,30-60
+28,70,female,White or Caucasian,IDC,equivocal,positive,59,positive,51,T2,M1,N1,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),Tamoxifen,Positive,6.0,159,Negative,None,175,>60
+29,68,female,White or Caucasian,ILC,positive,positive,34,positive,24,T3,M0,N0,Lumpectomy w/ SN,,,Trastuzumab (Herceptin),Exemestane (Aromasin),Negative,3.9,160,Negative,None,145,>60
+30,48,female,White or Caucasian,IDC,negative,positive,17,negative,0,Tx,M0,N0,Lumpectomy w/ SN,,,,Exemestane (Aromasin),Negative,3.3,138,Negative,None,232,>60
+31,53,female,White or Caucasian,IDC,negative,positive,54,positive,24,T1B,Mx,Nx,Lumpectomy w/ SN,,,,Raloxifene,Positive,3.7,107,Positive,None,225,30-60
+32,28,female,White or Caucasian,ILC,positive,positive,60,positive,61,T2,M0,N0,Lumpectomy w/ SN,,,,Exemestane (Aromasin),Positive,1.7,108,Negative,None,162,>60
+33,61,female,White or Caucasian,IDC,positive,negative,3,positive,17,T1A,M0,N0,Modified Radical Mastectomy,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),,Positive,4.8,136,Negative,None,80,30-60
+34,65,female,White or Caucasian,IDC,equivocal,positive,20,positive,66,T1B,M0,N0,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),Anastrozole (Arimidex),Positive,4.6,112,Positive,None,76,<30
+35,25,female,Black or African American,IDC,negative,positive,27,positive,19,T3,M0,N0,Lumpectomy w/ SN,,,,Raloxifene,Negative,1.4,113,Negative,PCN,286,>60
+36,38,female,White or Caucasian,IDC,positive,positive,33,positive,1,T2,M1,N1,Lumpectomy w/ SN,Carboplatin (Paraplatin),,Cyclophosphamide (Cytoxan),Anastrozole (Arimidex),Positive,5.8,167,Negative,None,317,>60
+37,68,female,White or Caucasian,IDC,positive,positive,87,positive,65,T1C,M0,N0,Modified Radical Mastectomy,Carboplatin (Paraplatin),,Cyclophosphamide (Cytoxan),Raloxifene,Positive,1.1,114,Negative,None,329,>60
+38,31,female,White or Caucasian,ILC,negative,null,n/a,null,n/a,T3,M0,N0,Lumpectomy w/ SN,,,,,Negative,2.9,94,Negative,None,268,>60
+39,79,female,White or Caucasian,IDC,negative,positive,46,positive,84,T1C,M0,N0,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),Tamoxifen,Positive,4.7,114,Negative,None,322,>60
+40,49,female,Black or African American,ILC,negative,positive,45,positive,41,T1C,M0,N0,Skin Sparing Mastectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),Exemestane (Aromasin),Positive,4.4,164,Negative,None,159,<30
+41,45,female,White or Caucasian,IDC,positive,negative,0,negative,0,T3,M0,N2,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Trastuzumab (Herceptin),,Negative,1.6,158,Negative,None,105,>60
+42,57,female,White or Caucasian,Pagets,positive,positive,53,positive,11,T4,M0,N1,Lumpectomy w/ SN,,,Trastuzumab (Herceptin),Exemestane (Aromasin),Negative,4.2,104,Negative,None,362,>60
+43,41,female,White or Caucasian,IDC,positive,null,n/a,null,n/a,T1B,M0,N0,Modified Radical Mastectomy,Paclitaxel (Taxol),Fluorouracil,Paclitaxel (Taxol),,Positive,3.0,156,Positive,None,340,<30
+44,81,female,Black or African American,IDC,negative,positive,50,positive,72,T2,M1,N1,Lumpectomy w/ SN,,Gemcitabine (Gemzar),,Raloxifene,Positive,5.4,159,Negative,None,165,>60
+45,82,female,White or Caucasian,IDC,positive,positive,64,positive,81,T2,M0,N0,Lumpectomy w/ SN,Carboplatin (Paraplatin),,Cyclophosphamide (Cytoxan),Exemestane (Aromasin),Positive,2.4,133,Negative,PCN,78,>60
+46,52,female,White or Caucasian,IDC,negative,positive,43,positive,89,T1C,M0,N0,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),,Positive,4.3,109,Negative,None,391,30-60
+47,54,female,White or Caucasian,IDC,equivocal,positive,67,positive,43,T1A,M0,N0,Modified Radical Mastectomy,,,,,Positive,1.5,112,Negative,None,211,30-60
+48,79,female,Black or African American,IDC,equivocal,positive,75,positive,30,T1C,M0,N0,Bilateral Mastectomy w/SN,,,,Anastrozole (Arimidex),Positive,6.0,165,Negative,None,99,>60
+49,59,female,White or Caucasian,DCIS,negative,positive,11,negative,1,Tis,M0,N0,Lumpectomy w/o SN,,,,Raloxifene,Negative,1.0,169,Negative,None,331,>60
+50,27,female,Black or African American,ILC,positive,positive,19,positive,85,T3,M0,N3,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Trastuzumab (Herceptin),Tamoxifen,Negative,4.6,142,Negative,None,214,>60
+51,65,female,White or Caucasian,IDC,positive,positive,53,positive,15,Tx,M0,N0,Lumpectomy w/ SN,,,,Exemestane (Aromasin),Negative,4.0,164,Negative,None,261,>60
+52,74,female,White or Caucasian,IDC,negative,positive,97,positive,71,T2,M0,N0,Modified Radical Mastectomy,,,,Exemestane (Aromasin),Positive,2.5,121,Positive,PCN,153,>60
+53,31,female,White or Caucasian,IDC,positive,positive,68,negative,2,T1C,M0,N0,Lumpectomy w/ SN,Carboplatin (Paraplatin),,Cyclophosphamide (Cytoxan),Raloxifene,Positive,5.4,90,Negative,None,258,>60
+54,70,female,White or Caucasian,DCIS,negative,positive,98,positive,68,Tis,M0,N0,Lumpectomy w/ SN,,,,Exemestane (Aromasin),Negative,1.6,125,Negative,None,398,>60
+55,75,female,White or Caucasian,IDC,negative,negative,0,negative,0,T1B,M0,N0,Skin Sparing Mastectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),,Positive,2.3,122,Positive,None,159,<30
+56,74,female,White or Caucasian,IDC,negative,positive,10,positive,54,T2,M0,N0,Lumpectomy w/ SN,,,,,Positive,3.0,142,Negative,PCN,285,>60
+57,39,female,White or Caucasian,IDC,positive,positive,15,positive,81,T1B,M0,N0,Bilateral Mastectomy w/SN,Paclitaxel (Taxol),Fluorouracil,Paclitaxel (Taxol),Anastrozole (Arimidex),Positive,4.2,160,Positive,None,231,>60
+58,45,female,White or Caucasian,IDC,equivocal,positive,68,positive,77,T1B,M0,N0,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),Raloxifene,Positive,4.7,133,Negative,None,182,<30
+59,56,female,White or Caucasian,IDC,negative,positive,93,positive,60,Tx,M0,N0,Lumpectomy w/ SN,,,,Anastrozole (Arimidex),Negative,2.4,104,Negative,None,279,>60
+60,43,female,White or Caucasian,ILC,negative,positive,4,negative,0,T4,M0,N0,Lumpectomy w/ SN,,,,Raloxifene,Negative,2.3,162,Negative,None,168,>60
+61,38,female,Black or African American,IDC,positive,negative,0,positive,98,T3,M0,N0,Lumpectomy w/ SN,,,Trastuzumab (Herceptin),,Negative,2.1,131,Negative,PCN,277,>60
+62,54,female,White or Caucasian,IDC,equivocal,null,n/a,null,n/a,T1C,M0,N0,Modified Radical Mastectomy,,,,,Positive,3.0,165,Negative,PCN,397,>60
+63,78,female,White or Caucasian,IDC,positive,positive,39,positive,77,T2,M0,N0,Lumpectomy w/ SN,Carboplatin (Paraplatin),,Cyclophosphamide (Cytoxan),Tamoxifen,Positive,5.5,159,Negative,None,96,>60
+64,25,male,Black or African American,IDC,negative,positive,97,positive,64,T1B,M0,N0,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),Exemestane (Aromasin),Positive,5.0,105,Positive,None,313,<30
+65,30,female,Black or African American,IDC,negative,positive,99,positive,32,T1C,M0,N0,Bilateral Mastectomy w/SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),Exemestane (Aromasin),Positive,4.6,112,Negative,None,335,>60
+66,73,female,White or Caucasian,DCIS,positive,positive,30,positive,96,Tis,M0,N0,Lumpectomy w/ SN,,,,Raloxifene,Negative,2.8,150,Negative,None,345,>60
+67,73,female,White or Caucasian,IDC,positive,positive,88,positive,8,T2,M0,N0,Lumpectomy w/ SN,Carboplatin (Paraplatin),,,Exemestane (Aromasin),Positive,1.0,140,Negative,None,361,>60
+68,78,female,Black or African American,IDC,equivocal,positive,62,positive,30,T2,M0,N2,Bilateral Mastectomy w/SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),,Positive,4.7,110,Negative,None,224,>60
+69,38,female,White or Caucasian,IDC,negative,positive,65,positive,100,T1A,M0,N0,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),Anastrozole (Arimidex),Positive,2.8,137,Positive,None,228,30-60
+70,76,female,White or Caucasian,DCIS,negative,positive,86,positive,59,Tis,M0,N0,Lumpectomy w/ SN,,,,,Negative,1.2,114,Negative,None,282,>60
+71,55,female,White or Caucasian,DCIS,negative,positive,24,positive,17,Tis,M0,N0,Lumpectomy w/o SN,,,,Anastrozole (Arimidex),Negative,2.6,120,Negative,None,367,>60
+72,47,female,White or Caucasian,IDC,positive,positive,82,positive,54,T1B,M0,N0,Skin Sparing Mastectomy w/ SN,Paclitaxel (Taxol),Fluorouracil,Paclitaxel (Taxol),Raloxifene,Positive,2.8,167,Negative,None,379,<30
+73,79,female,Black or African American,IDC,positive,positive,86,positive,47,T1A,M0,N0,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),Tamoxifen,Positive,3.7,111,Negative,None,185,30-60
+74,28,female,White or Caucasian,DCIS,negative,positive,53,positive,79,Tis,M0,N0,Lumpectomy w/ SN,,,,Exemestane (Aromasin),Negative,5.5,110,Negative,None,133,>60
+75,80,female,White or Caucasian,IDC,positive,positive,14,positive,34,T2,M0,N0,Lumpectomy w/ SN,,,,Exemestane (Aromasin),Negative,5.8,112,Negative,None,170,>60
+76,62,female,White or Caucasian,IDC,negative,positive,61,positive,37,T1C,M0,N0,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),Raloxifene,Positive,4.4,148,Negative,None,270,>60
+77,54,female,White or Caucasian,IDC,equivocal,positive,44,positive,30,T1B,M0,N0,Modified Radical Mastectomy,,,,Exemestane (Aromasin),Positive,5.7,109,Negative,None,350,>60
+78,48,female,White or Caucasian,DCIS,equivocal,positive,88,positive,60,Tis,M0,N0,Lumpectomy w/ SN,,,,Anastrozole (Arimidex),Negative,6.0,158,Positive,None,223,>60
+79,52,female,White or Caucasian,IDC,negative,positive,20,positive,16,T1C,M0,N0,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),Raloxifene,Positive,5.0,131,Negative,None,276,<30
+80,80,female,White or Caucasian,IDC,positive,positive,36,positive,22,T3,M0,N0,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Trastuzumab (Herceptin),Tamoxifen,Negative,2.6,115,Negative,None,350,>60
+81,79,female,Black or African American,ILC,positive,negative,0,positive,12,T2,M1,N1,Lumpectomy w/ SN,,Gemcitabine (Gemzar),Trastuzumab (Herceptin),,Negative,4.3,93,Positive,None,262,>60
+82,53,female,White or Caucasian,IDC,negative,positive,30,positive,82,Tx,M0,N0,Lumpectomy w/ SN,,,,Exemestane (Aromasin),Negative,3.2,111,Negative,None,293,>60
+83,74,female,White or Caucasian,DCIS,positive,positive,67,positive,18,Tis,M0,N0,Modified Radical Mastectomy,,,Trastuzumab (Herceptin),Exemestane (Aromasin),Negative,2.7,148,Negative,None,233,>60
+84,31,female,Black or African American,IDC,negative,positive,77,positive,49,T2,M0,N0,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),Raloxifene,Negative,3.7,161,Negative,None,356,>60
+85,72,female,White or Caucasian,IDC,negative,positive,63,positive,45,T1C,M0,N0,Bilateral Mastectomy w/SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),Exemestane (Aromasin),Positive,5.4,139,Negative,None,219,30-60
+86,31,female,White or Caucasian,IDC,negative,negative,0,positive,81,T1B,M0,N0,Skin Sparing Mastectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),,Positive,3.9,160,Positive,None,231,>60
+87,49,female,White or Caucasian,IDC,positive,positive,50,positive,89,Tx,M0,N0,Lumpectomy w/ SN,,,,,,2.2,100,Negative,PCN,235,>60
+88,27,female,White or Caucasian,IDC,equivocal,positive,29,positive,100,T3,M0,N0,Lumpectomy w/ SN,,,,,Negative,1.2,143,Negative,None,171,>60
+89,79,female,Black or African American,ILC,positive,positive,62,negative,3,T1A,M0,N0,Lumpectomy w/o SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),Anastrozole (Arimidex),Positive,1.1,154,Negative,None,266,30-60
+90,61,female,White or Caucasian,IDC,positive,positive,15,positive,57,T1C,M0,N0,Modified Radical Mastectomy,Carboplatin (Paraplatin),,Cyclophosphamide (Cytoxan),Raloxifene,Positive,2.2,124,Negative,None,140,>60
+91,31,female,White or Caucasian,IDC,positive,positive,25,positive,30,T3,M0,N0,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Trastuzumab (Herceptin),Tamoxifen,Negative,2.6,131,Negative,None,203,>60
+92,78,female,Black or African American,IDC,equivocal,positive,100,positive,81,T1C,M0,N0,Lumpectomy w/ SN,,,,Exemestane (Aromasin),Positive,5.1,131,Negative,None,85,>60
+93,78,female,White or Caucasian,IDC,positive,positive,24,positive,13,T4,M0,N0,Lumpectomy w/ SN,,,Trastuzumab (Herceptin),Exemestane (Aromasin),Negative,3.7,138,Negative,None,270,>60
+94,33,female,White or Caucasian,ILC,negative,positive,63,positive,48,T2,M0,N0,Lumpectomy w/ SN,Doxorubicin,Cyclophosphamide (Cytoxan),Paclitaxel (Taxol),Raloxifene,Negative,5.3,139,Negative,None,323,>60
+95,81,female,White or Caucasian,IDC,negative,positive,40,positive,13,T1C,M0,N0,Bilateral Mastectomy w/SN,,,,Exemestane (Aromasin),Positive,1.5,139,Negative,PCN,165,>60
+96,43,female,White or Caucasian,IDC,positive,positive,73,positive,37,T2,M0,N0,Lumpectomy w/ SN,,,Trastuzumab (Herceptin),Anastrozole (Arimidex),Negative,3.8,112,Negative,None,316,>60
+97,77,female,White or Caucasian,DCIS,positive,positive,67,positive,73,Tis,M0,N0,Lumpectomy w/ SN,,,,Raloxifene,Negative,3.4,129,Negative,None,174,>60
+98,77,female,Black or African American,IDC,equivocal,positive,46,positive,83,T1B,M0,N0,Skin Sparing Mastectomy w/ SN,,,,Tamoxifen,Positive,5.6,161,Negative,None,132,>60
+99,61,female,Black or African American,DCIS,negative,negative,0,positive,24,Tis,M0,N0,Lumpectomy w/ SN,,,,,Negative,2.0,113,Negative,None,356,>60
+100,69,male,White or Caucasian,IDC,positive,positive,20,negative,3,T2,M1,N1,Lumpectomy w/ SN,,Gemcitabine (Gemzar),Trastuzumab (Herceptin),Exemestane (Aromasin),Negative,2.6,123,Negative,PCN,292,>60

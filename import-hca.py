@@ -11,13 +11,13 @@ import logging
 import datetime
 import requests
 
-from random import random as rand
+from random import random as rand, seed as seed
 
 suffix = '-dstu2'
 
-names_family = ["Bachmann", "Belson", "Berger", "Cannon", "Gregory", "Hendricks", "Schmutzhauser", "Weisman"]
-names_females = ["Christy", "Elizabeth", "Emilie", "Jeanine", "Julie", "Magda", "Monica", "Rachel"]
-names_males = ["Ehrlich", "Jerome", "Gavin", "Henry", "Peter", "Richard", "Ted", "Zhou"]
+names_family = ["Bachmann", "Belson", "Berger", "Cannon", "Chen", "Dunbar", "Fallon", "Gregory", "Haynes", "Hendricks", "Jackson", "Klever", "Logan", "McConnell", "Mueller", "Newman", "Oppenheimer", "Peterson", "Richards", "Russo", "Savel", "Schmutzhauser", "Tessler", "Urciuoli", "Weisman"]
+names_females = ["Anne", "Beryl", "Christy", "Deborah", "Elizabeth", "Emilie", "Hannah", "Jeanine", "Julie", "Lindsay", "Magda", "Monica", "Nancy", "Paulene", "Rachel", "Renee", "Rita", "Shae", "Tess", "Trudy", "Vanessa", "Zoe"]
+names_males = ["Ehrlich", "Gavin", "Joseph", "Peter", "Richard", "Ted"]
 
 with io.open('map-condition-hca.json', 'r') as h:
 	map_conditions = json.load(h)
@@ -41,15 +41,18 @@ def parse_int(string):
 	except ValueError:
 		return None
 
-def populate_demographics(data):
+def populate_demographics(data, seed_num):
 	data['pat_id'] = 'hca-pat-' + data['PtID']
 	days = 365*int(data['age']) + int(365*rand())
 	data['bday'] = datetime.date.today() - datetime.timedelta(days=days)
 	data['name'] = {}
 	if 'male' == data['Sex']:
+		seed(seed_num)
 		data['name']['given'] = names_males[int(rand()*len(names_males))]
 	else:
+		seed(seed_num)
 		data['name']['given'] = names_females[int(rand()*len(names_females))]
+	seed(seed_num)
 	data['name']['family'] = names_family[int(rand()*len(names_family))]
 	return data
 
@@ -213,7 +216,7 @@ if '__main__' == __name__:
 				resources = []
 				logging.debug("Processing row {}".format(row[0]))
 				data = dict(zip(head, row))
-				data = populate_demographics(data)
+				data = populate_demographics(data, row[0])
 				data = populate_conditions(data)
 				data = populate_mutations(data)
 				data = populate_labs(data)

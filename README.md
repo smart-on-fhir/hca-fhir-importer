@@ -1,8 +1,8 @@
 Sample Patients Importer
 ========================
 
-Sample data (not yet included in this repo) must be present as `import-hca.csv`, then one can run:
+Sample data is present in `import-hca.csv`, one can run:
 
 ```bash
-python3 import-hca.py
+python3 import-hca.py {server-base-url}
 ```
