@@ -2,12 +2,14 @@
 # -*- coding: utf-8 -*-
 
 import io
+import sys
 import csv
 import json
 import uuid
 import jinja2
 import logging
 import datetime
+import requests
 
 from random import random as rand
 
@@ -170,49 +172,75 @@ def populate_meds(data):
 def render(template, data, **args):
 	d = data.copy()
 	d.update(args)
-	print(template.render(rand_id=rand_id, **d))
-	
+	return template.render(rand_id=rand_id, **d)
 
-print('->  Reading "import-hca.csv"')
-with io.open('import-hca.csv', 'r') as csvfile:
-	f = csv.reader(csvfile)
-	head = None
+def fhir_update(base_url, resource_type, resource):
+	try:
+		parsed = json.loads(resource)
+		url = '{}/{}/{}'.format(base_url, resource_type, parsed['id'])
+		res = requests.put(url, headers={'Content-Type': 'application/json+fhir'}, data=resource)
+		res.raise_for_status()
+	except Exception as e:
+		logging.error("Failing resource \"{}\" was:\n{}".format(resource_type, resource))
+		raise e
+
+
+if '__main__' == __name__:
+	logging.basicConfig(level=logging.DEBUG)
+	push_to = sys.argv[1] if len(sys.argv) > 1 else None
 	
-	# Jinja2
-	tplenv = jinja2.Environment(loader=jinja2.PackageLoader(__name__, 'templates'))
-	tpl_patient = tplenv.get_template('hca-patient{}.json'.format(suffix))
-	tpl_condition = tplenv.get_template('hca-condition{}.json'.format(suffix))
-	tpl_observation = tplenv.get_template('hca-observation{}.json'.format(suffix))
-	tpl_procedure = tplenv.get_template('hca-procedure{}.json'.format(suffix))
-	tpl_medpresc = tplenv.get_template('hca-medicationprescription{}.json'.format(suffix))
-	
-	# loop
-	for row in f:
-		if head is None:
-			head = row
+	# read CSV
+	logging.debug('Reading "import-hca.csv"')
+	with io.open('import-hca.csv', 'r') as csvfile:
+		f = csv.reader(csvfile)
+		head = None
 		
-		# one row, one patient
-		else:
-			logging.debug("Processing row {}".format(row[0]))
-			data = dict(zip(head, row))
-			data = populate_demographics(data)
-			data = populate_conditions(data)
-			data = populate_mutations(data)
-			data = populate_labs(data)
-			data = populate_procedures(data)
-			data = populate_meds(data)
+		# Jinja2
+		tplenv = jinja2.Environment(loader=jinja2.PackageLoader(__name__, 'templates'))
+		tpl_patient = tplenv.get_template('hca-patient{}.json'.format(suffix))
+		tpl_condition = tplenv.get_template('hca-condition{}.json'.format(suffix))
+		tpl_observation = tplenv.get_template('hca-observation{}.json'.format(suffix))
+		tpl_procedure = tplenv.get_template('hca-procedure{}.json'.format(suffix))
+		tpl_medpresc = tplenv.get_template('hca-medicationprescription{}.json'.format(suffix))
+		
+		# loop
+		for row in f:
+			if head is None:
+				head = row
 			
-			render(tpl_patient, data)
-			render(tpl_condition, data)
-			for obs in data.get('mutations', []):
-				render(tpl_observation, data, mutation=obs)
-			for obs in data.get('labs', []):
-				render(tpl_observation, data, lab=obs)
-			if data.get('procedure'):
-				render(tpl_procedure, data)
-			for med in data.get('medications', []):
-				render(tpl_medpresc, data, medication= med)
-			
-			break
+			# one row, one patient
+			else:
+				resources = []
+				logging.debug("Processing row {}".format(row[0]))
+				data = dict(zip(head, row))
+				data = populate_demographics(data)
+				data = populate_conditions(data)
+				data = populate_mutations(data)
+				data = populate_labs(data)
+				data = populate_procedures(data)
+				data = populate_meds(data)
+				
+				resources.append(('Patient', render(tpl_patient, data)))
+				resources.append(('Condition', render(tpl_condition, data)))
+				for obs in data.get('mutations', []):
+					resources.append(('Observation', render(tpl_observation, data, lab=obs)))
+				for obs in data.get('labs', []):
+					resources.append(('Observation', render(tpl_observation, data, lab=obs)))
+				if 'procedure' in data:
+					resources.append(('Procedure', render(tpl_procedure, data)))
+				for med in data.get('medications', []):
+					resources.append(('MedicationPrescription', render(tpl_medpresc, data, medication= med)))
+				
+				# push to FHIR server
+				if push_to is not None:
+					logging.debug("Pushing row {} to {}".format(row[0], push_to))
+					for typ, resource in resources:
+						fhir_update(push_to, typ, resource)
+				else:
+					for typ, resource in resources:
+						print("-->  {}\n{}\n".format(typ, json.loads(resource)))
+				
+				#break
+	
+	logging.debug('Done')
 
-print('->  Done')
