@@ -23,6 +23,9 @@ with io.open('map-condition-hca.json', 'r') as h:
 with io.open('map-procedure-hca.json', 'r') as h:
 	map_procedures = json.load(h)
 
+with io.open('map-medication-hca.json', 'r') as h:
+	map_medications = json.load(h)
+
 
 def rand_id():
 	return str(uuid.uuid4())[-12:]
@@ -31,7 +34,7 @@ def ucfirst(string):
 	return string[:1].upper() + string[1:]
 
 def populate_demographics(data):
-	data['pat_id'] = 'hca' + data['PtID']
+	data['pat_id'] = 'hca-pat-' + data['PtID']
 	days = 365*int(data['age']) + int(365*rand())
 	data['bday'] = datetime.date.today() - datetime.timedelta(days=days)
 	data['name'] = {}
@@ -43,7 +46,7 @@ def populate_demographics(data):
 	return data
 
 def populate_conditions(data):
-	data['cond_id'] = 'hcac' + rand_id()
+	data['cond_id'] = 'hca-con-' + rand_id()
 	if 'Diagnosis name' in data:
 		mapped = map_conditions[data['Diagnosis name'].lower()]
 		data['condition'] = {
@@ -89,8 +92,16 @@ def populate_procedures(data):
 		}
 	return data
 
-def render(row, template, observation=None):
-	print(template.render(rand_id=rand_id, observation=observation, **row))
+def populate_meds(data):
+	meds = []
+	for med in [data.get('Chemo drug 1'), data.get('Chemo drug 2'), data.get('Chemo drug 3'), data.get('Endocrine therapy')]:
+		if med:
+			meds.append(map_medications[med])
+	data['medications'] = meds
+	return data
+
+def render(template, **args):
+	print(template.render(rand_id=rand_id, **args))
 	
 
 print('->  Reading "import-hca.csv"')
@@ -104,6 +115,7 @@ with io.open('import-hca.csv', 'r') as csvfile:
 	tpl_condition = tplenv.get_template('hca-condition{}.json'.format(suffix))
 	tpl_observation = tplenv.get_template('hca-observation{}.json'.format(suffix))
 	tpl_procedure = tplenv.get_template('hca-procedure{}.json'.format(suffix))
+	tpl_medpresc = tplenv.get_template('hca-medicationprescription{}.json'.format(suffix))
 	
 	# loop
 	for row in f:
@@ -118,13 +130,19 @@ with io.open('import-hca.csv', 'r') as csvfile:
 			data = populate_conditions(data)
 			data = populate_observations(data)
 			data = populate_procedures(data)
+			data = populate_meds(data)
 			
-			render(data, tpl_patient)
-			render(data, tpl_condition)
-			for obs in data['observations']:
-				render(data, tpl_observation, obs)
+			render(tpl_patient, **data)
+			render(tpl_condition, **data)
+			for obs in data.get('observations', []):
+				data['observation'] = obs
+				render(tpl_observation, **data)
 			if data.get('procedure'):
-				render(data, tpl_procedure)
+				render(tpl_procedure, **data)
+			for med in data.get('medications', []):
+				data['medication'] = med
+				render(tpl_medpresc, **data)
+			
 			break
 
 print('->  Done')

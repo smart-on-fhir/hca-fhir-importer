@@ -43,7 +43,7 @@
 		"snomed": "",
 		"display": "Other"
 	},
-	"partial mastectomy w/sn": {
+	"partial mastectomy w/ sn": {
 		"snomed": "35482003",
 		"display": "Partial mastectomy with axillary lymphadenectomy"
 	},
@@ -91,7 +91,7 @@
 		"snomed": "172043006",
 		"display": "Simple mastectomy"
 	},
-	"skin sparing mastectomy w/sn": {
+	"skin sparing mastectomy w/ sn": {
 		"snomed": "428564008",
 		"display": "Skin sparing mastectomy"
 	},

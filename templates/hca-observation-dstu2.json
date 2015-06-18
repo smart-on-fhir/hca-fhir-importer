@@ -1,5 +1,5 @@
 {
-	"id": "hcao{{ rand_id() }}",
+	"id": "hca-obs-{{ rand_id() }}",
 	"subject": {
 		"reference": "Patient/{{ pat_id }}",
 		"display": "{{ name.family }} {{ name.given }}"

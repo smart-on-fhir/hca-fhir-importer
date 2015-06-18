@@ -1,0 +1,13 @@
+{
+    "Anastrozole (Arimidex)": {"rxcui": "84857", "display": "Anastrozole [BN]", "text": "Anastrozole (Arimidex)"},
+    "Carboplatin (Paraplatin)": {"rxcui": "40048", "display": "Carboplatin [BN]", "text": "Carboplatin (Paraplatin)"},
+    "Cyclophosphamide (Cytoxan)": {"rxcui": "3002", "display": "Cyclophosphamide [BN]", "text": "Cyclophosphamide (Cytoxan)"},
+    "Doxorubicin": {"rxcui": "3639", "display": "3639 [BN]", "text": "Doxorubicin"},
+    "Exemestane (Aromasin)": {"rxcui": "258494", "display": "Exemestane [BN]", "text": "Exemestane (Aromasin)"},
+    "Fluorouracil": {"rxcui": "4492", "display": "Fluorouracil [BN]", "text": "Fluorouracil"},
+    "Gemcitabine (Gemzar)": {"rxcui": "12574", "display": "Gemcitabine [BN]", "text": "Gemcitabine (Gemzar)"},
+    "Paclitaxel (Taxol)": {"rxcui": "56946", "display": "Paclitaxel [BN]", "text": "Paclitaxel (Taxol)"},
+    "Raloxifene": {"rxcui": "72143", "display": "Raloxifene [BN]", "text": "Raloxifene"},
+    "Tamoxifen": {"rxcui": "10324", "display": "Tamoxifen [BN]", "text": "Tamoxifen"},
+    "Trastuzumab (Herceptin)": {"rxcui": "224905", "display": "Anastrozole [BN]", "text": "Trastuzumab (Herceptin)"}
+}
