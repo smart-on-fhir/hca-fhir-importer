@@ -1,10 +1,11 @@
 {
+	"resourceType": "Observation",
 	"id": "hca-obs-{{ rand_id() }}",
 	"subject": {
 		"reference": "Patient/{{ pat_id }}",
 		"display": "{{ name.family }} {{ name.given }}"
 	},
-	{%- if mutation %}
+	{%- if lab.gene_expression %}
 	"modifierExtension": [{
 		"url": "http://fhir-registry.smarthealthit.org/StructureDefinition/gene-expression-in",
 		"valueResource": {
@@ -12,69 +13,52 @@
 			"display": "{{ condition.text }}"
 		}
 	}],
+	{%- endif %}
 	"code": {
 		"coding": [{
-			"system": "http://www.genenames.org",
-			"code": "{{ mutation.hgnc }}",
-			"display": "{{ mutation.display }}"
-		}],
-		"text": "{{ mutation.text }}"
-	},
-	{%- if "HGNC:3430" == mutation.hgnc %}
-	"valueString": "{{ mutation.result }}",
-	"method": {
-		"coding": [{
-			"system": "",
-			"code": ""
-		}],
-		"display": "FISH"
-	},
-	{%- else %}
-	"valueQuantity": {
-		"value": {{ mutation.quantity }},
-		"units": "%",
-		"system": "http://unitsofmeasure.org",
-		"code": "%"
-	},
-	"interpretation": {
-		"coding": [{
-			"system": "http://hl7.org/fhir/v2/0078",
-			"code": "{% if 'Positive' == mutation.result %}POS{% else %}{% if 'Negative' == mutation.result %}NEG{% else %}IND{% endif %}{% endif %}",
-			"display": "{% if 'Positive' == mutation.result %}Positive{% else %}{% if 'Negative' == mutation.result %}Negative{% else %}Indeterminate{% endif %}{% endif %}"
-		}]
-	},
-	{%- endif %}{% else %}
-	"code": {
-		"coding": [{
-			"system": "http://loinc.org",
-			"code": "{{ lab.loinc }}",
-			"display": "{{ lab.display }}"
+			"system": "{{ lab.system }}",
+			"code": "{{ lab.code }}"{% if lab.display %},
+			"display": "{{ lab.display }}"{% endif %}
 		}],
 		"text": "{{ lab.text }}"
 	},
-	{%- if lab.low %}
+	{%- if lab.low or lab.high %}
 	"valueRange": {
+		{%- if lab.low %}
 		"low": {
 			"value": {{ lab.low }},
 			"units": "{{ lab.ucum }}",
 			"system": "http://unitsofmeasure.org",
 			"code": "{{ lab.ucum }}"
-		},
+		}
+		{%- endif %}{% if lab.high %}{% if lab.low %},{% endif %}
 		"high": {
 			"value": {{ lab.high }},
 			"units": "{{ lab.ucum }}",
 			"system": "http://unitsofmeasure.org",
 			"code": "{{ lab.ucum }}"
 		}
+		{%- endif %}
 	},
-	{%- else %}
+	{%- else %}{% if lab.quantity %}
 	"valueQuantity": {
 		"value": {{ lab.quantity }},
 		"units": "{{ lab.ucum }}",
 		"system": "http://unitsofmeasure.org",
 		"code": "{{ lab.ucum }}"
 	},
-	{%- endif %}{% endif %}
+	{%- else %}{% if lab.string %}
+	"valueString": "{{ lab.string }}",
+	{%- endif %}{% endif %}{% endif %}
+	{%- if lab.result %}
+	"interpretation": {
+		"coding": [{
+			"system": "http://hl7.org/fhir/v2/0078",
+			"code": "{% if 'Positive' == lab.result %}POS{% else %}{% if 'Negative' == lab.result %}NEG{% else %}IND{% endif %}{% endif %}",
+			"display": "{% if 'Positive' == lab.result %}Positive{% else %}{% if 'Negative' == lab.result %}Negative{% else %}Indeterminate{% endif %}{% endif %}"
+		}]
+	},
+	{%- endif %}
 	"status": "final",
 	"reliability": "ok"
 }

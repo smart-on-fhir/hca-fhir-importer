@@ -1,4 +1,5 @@
 {
+	"resourceType": "MedicationPrescription",
 	"id": "hca-mpr-{{ rand_id() }}",
 	"patient": {
 		"reference": "Patient/{{ pat_id }}",
@@ -17,6 +18,6 @@
 			"code": "{{ medication.rxcui }}",
 			"display": "{{ medication.display }}"
 		}],
-		"text": "{{ medication.text }}"
+		"name": "{{ medication.text }}"
 	}]
 }

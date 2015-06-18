@@ -1,4 +1,5 @@
 {
+	"resourceType": "Condition",
 	"id": "{{ cond_id }}",
 	"patient": {
 		"reference": "Patient/{{ pat_id }}",

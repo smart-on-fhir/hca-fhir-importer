@@ -1,4 +1,5 @@
 {
+	"resourceType": "Patient",
 	"id": "{{ pat_id }}",
 	"name": [{
 		"family": ["{{ name.family }}"],

@@ -33,6 +33,12 @@ def rand_id():
 def ucfirst(string):
 	return string[:1].upper() + string[1:]
 
+def parse_int(string):
+	try:
+		return int(string)
+	except ValueError:
+		return None
+
 def populate_demographics(data):
 	data['pat_id'] = 'hca-pat-' + data['PtID']
 	days = 365*int(data['age']) + int(365*rand())
@@ -59,27 +65,88 @@ def populate_conditions(data):
 def populate_mutations(data):
 	obs = []
 	obs.append({
-		'hgnc': "HGNC:3430",
+		'gene_expression': True,
+		'code': "HGNC:3430",
+		'system': "http://www.genenames.org",
 		'display': "erb-b2 receptor tyrosine kinase 2",
 		'text': "Her2Neu FISH",
 		'result': ucfirst(data['Her2Neu FISH']),
+		'quantity': parse_int(data['Her2Neu FISH']),
+		'string': data['Her2Neu FISH'],
+		'ucum': '%',
 	})
 	obs.append({
-		'hgnc': "HGNC:3467",
+		'gene_expression': True,
+		'code': "HGNC:3467",
+		'system': "http://www.genenames.org",
 		'display': "estrogen receptor 1",
 		'text': "ER Pct",
 		'result': ucfirst(data['Receptors ER']),
-		'quantity': data['rlReceptorsER Pct'],
+		'quantity': parse_int(data['rlReceptorsER Pct']),
+		'string': data['rlReceptorsER Pct'],
+		'ucum': '%',
 	})
 	obs.append({
-		'hgnc': "HGNC:8910",
+		'gene_expression': True,
+		'code': "HGNC:8910",
+		'system': "http://www.genenames.org",
 		'display': "progesterone receptor",
 		'text': "PR Pct",
 		'result': ucfirst(data['Receptors PR']),
-		'quantity': data['rlReceptorsPR Pct'],
+		'quantity': parse_int(data['rlReceptorsPR Pct']),
+		'string': data['rlReceptorsPR Pct'],
+		'ucum': '%',
 	})
 	if len(obs) > 0:
 		data['mutations'] = obs
+	return data
+
+def populate_labs(data):
+	labs = []
+	labval = data.get('Abs Neutrophil Count (x10*3/uL)')
+	if labval:
+		labs.append({
+			'code': "26499-4",
+			'system': "http://loinc.org",
+			'display': "Neutrophils [#/volume] in Blood",
+			'text': "Abs Neutrophil Count (x10*3/uL)",
+			'quantity': labval,
+			'ucum': "10*3/uL",
+		})
+	
+	labval = data.get('Platelets (x10*3)')
+	if labval:
+		labs.append({
+			'code': "26515-7",
+			'system': "http://loinc.org",
+			'display': "Platelets [#/volume] in Blood",
+			'text': "Platelets (x10*3)",
+			'quantity': labval,
+			'ucum': "10*3/uL",
+		})
+	
+	labval = data.get('eGFR (ml/min)')
+	if labval:
+		low = None
+		high = None
+		if '<' == labval[:1]:
+			high = labval[1:]
+		elif '>' == labval[:1]:
+			low = labval[1:]
+		elif '-' in labval:
+			low, high = labval.split('-')
+		labs.append({
+			'code': "69405-9",
+			'system': "http://loinc.org",
+			'display': "Glomerular filtration rate/1.73 sq M.predicted",
+			'text': "eGFR (ml/min)",
+			'low': low,
+			'high': high,
+			'string': labval,
+			'ucum': "mL/min",
+		})
+	
+	data['labs'] = labs
 	return data
 
 def populate_procedures(data):
@@ -90,38 +157,6 @@ def populate_procedures(data):
 			'display': mapped['display'],
 			'text': data['Surgery detail'],
 		}
-	return data
-
-def populate_labs(data):
-	labs = []
-	if 'Abs Neutrophil Count (x10*3/uL)' in data:
-		labs.append({
-			'loinc': "26499-4",
-			'display': "Neutrophils [#/volume] in Blood",
-			'text': "Abs Neutrophil Count (x10*3/uL)",
-			'quantity': data['Abs Neutrophil Count (x10*3/uL)'],
-			'ucum': "10*3/uL",
-		})
-	if 'Platelets (x10*3)' in data:
-		labs.append({
-			'loinc': "26515-7",
-			'display': "Platelets [#/volume] in Blood",
-			'text': "Platelets (x10*3)",
-			'quantity': data['Platelets (x10*3)'],
-			'ucum': "10*3/uL",
-		})
-	if 'eGFR (ml/min)' in data:
-		low, high = data['eGFR (ml/min)'].split('-')
-		labs.append({
-			'loinc': "69405-9",
-			'display': "Glomerular filtration rate/1.73 sq M.predicted",
-			'text': "eGFR (ml/min)",
-			'low': low,
-			'high': high,
-			'ucum': "mL/min",
-		})
-	
-	data['labs'] = labs
 	return data
 
 def populate_meds(data):

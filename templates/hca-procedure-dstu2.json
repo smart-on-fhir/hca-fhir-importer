@@ -1,4 +1,5 @@
 {
+	"resourceType": "Procedure",
 	"id": "hca-pro-{{ rand_id() }}",
 	"patient": {
 		"reference": "Patient/{{ pat_id }}",
