@@ -13,10 +13,10 @@ import requests
 
 from random import random as rand, seed as seed
 
-suffix = '-dstu2'
+tpl_suffix = '-dstu2'
 
-names_family = ["Bachmann", "Belson", "Berger", "Cannon", "Chen", "Dunbar", "Fallon", "Gregory", "Haynes", "Hendricks", "Jackson", "Klever", "Logan", "McConnell", "Mueller", "Newman", "Oppenheimer", "Peterson", "Richards", "Russo", "Savel", "Schmutzhauser", "Tessler", "Urciuoli", "Weisman"]
-names_females = ["Anne", "Beryl", "Christy", "Deborah", "Elizabeth", "Emilie", "Hannah", "Jeanine", "Julie", "Lindsay", "Magda", "Monica", "Nancy", "Paulene", "Rachel", "Renee", "Rita", "Shae", "Tess", "Trudy", "Vanessa", "Zoe"]
+names_family = ["Ackerman", "Adams", "Bachmann", "Belson", "Berger", "Cannon", "Chen", "Dunbar", "Ebert", "Fallon", "Gregory", "Grey", "Haynes", "Hendricks", "Hoover", "Jackson", "Klever", "Logan", "McConnell", "Mueller", "Newman", "Oppenheimer", "Peterson", "Petrich", "Richards", "Russo", "Santiago", "Savel", "Schmutzhauser", "Tessler", "Urciuoli", "Williams", "Zafran", "Zhou"]
+names_females = ["Anne", "Beryl", "Brittany", "Christy", "Deborah", "Elizabeth", "Emilie", "Hannah", "Jeanine", "Julie", "Lindsay", "Magda", "Monica", "Nancy", "Paulene", "Rachel", "Renee", "Rita", "Shae", "Tess", "Trudy", "Vanessa", "Zoe"]
 names_males = ["Ehrlich", "Gavin", "Joseph", "Peter", "Richard", "Ted"]
 
 with io.open('map-condition-hca.json', 'r') as h:
@@ -43,17 +43,17 @@ def parse_int(string):
 
 def populate_demographics(data, seed_num):
 	data['pat_id'] = 'hca-pat-' + data['PtID']
-	days = 365*int(data['age']) + int(365*rand())
+	days = 365*int(data['age']) + round(364*rand())
 	data['bday'] = datetime.date.today() - datetime.timedelta(days=days)
 	data['name'] = {}
 	if 'male' == data['Sex']:
 		seed(seed_num)
-		data['name']['given'] = names_males[int(rand()*len(names_males))]
+		data['name']['given'] = names_males[round(rand()*(len(names_males)-1))]
 	else:
 		seed(seed_num)
-		data['name']['given'] = names_females[int(rand()*len(names_females))]
-	seed(seed_num)
-	data['name']['family'] = names_family[int(rand()*len(names_family))]
+		data['name']['given'] = names_females[round(rand()*(len(names_females)-1))]
+	seed((seed_num + 3) * seed_num)
+	data['name']['family'] = names_family[round(rand()*(len(names_family)-1))]
 	return data
 
 def populate_conditions(data):
@@ -200,11 +200,11 @@ if '__main__' == __name__:
 		
 		# Jinja2
 		tplenv = jinja2.Environment(loader=jinja2.PackageLoader(__name__, 'templates'))
-		tpl_patient = tplenv.get_template('hca-patient{}.json'.format(suffix))
-		tpl_condition = tplenv.get_template('hca-condition{}.json'.format(suffix))
-		tpl_observation = tplenv.get_template('hca-observation{}.json'.format(suffix))
-		tpl_procedure = tplenv.get_template('hca-procedure{}.json'.format(suffix))
-		tpl_medpresc = tplenv.get_template('hca-medicationprescription{}.json'.format(suffix))
+		tpl_patient = tplenv.get_template('hca-patient{}.json'.format(tpl_suffix))
+		tpl_condition = tplenv.get_template('hca-condition{}.json'.format(tpl_suffix))
+		tpl_observation = tplenv.get_template('hca-observation{}.json'.format(tpl_suffix))
+		tpl_procedure = tplenv.get_template('hca-procedure{}.json'.format(tpl_suffix))
+		tpl_medpresc = tplenv.get_template('hca-medicationprescription{}.json'.format(tpl_suffix))
 		
 		# loop
 		for row in f:
@@ -216,7 +216,7 @@ if '__main__' == __name__:
 				resources = []
 				logging.debug("Processing row {}".format(row[0]))
 				data = dict(zip(head, row))
-				data = populate_demographics(data, row[0])
+				data = populate_demographics(data, int(row[0]))
 				data = populate_conditions(data)
 				data = populate_mutations(data)
 				data = populate_labs(data)
