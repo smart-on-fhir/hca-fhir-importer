@@ -56,7 +56,7 @@ def populate_conditions(data):
 		}
 	return data
 
-def populate_observations(data):
+def populate_mutations(data):
 	obs = []
 	obs.append({
 		'hgnc': "HGNC:3430",
@@ -79,7 +79,7 @@ def populate_observations(data):
 		'quantity': data['rlReceptorsPR Pct'],
 	})
 	if len(obs) > 0:
-		data['observations'] = obs
+		data['mutations'] = obs
 	return data
 
 def populate_procedures(data):
@@ -92,6 +92,38 @@ def populate_procedures(data):
 		}
 	return data
 
+def populate_labs(data):
+	labs = []
+	if 'Abs Neutrophil Count (x10*3/uL)' in data:
+		labs.append({
+			'loinc': "26499-4",
+			'display': "Neutrophils [#/volume] in Blood",
+			'text': "Abs Neutrophil Count (x10*3/uL)",
+			'quantity': data['Abs Neutrophil Count (x10*3/uL)'],
+			'ucum': "10*3/uL",
+		})
+	if 'Platelets (x10*3)' in data:
+		labs.append({
+			'loinc': "26515-7",
+			'display': "Platelets [#/volume] in Blood",
+			'text': "Platelets (x10*3)",
+			'quantity': data['Platelets (x10*3)'],
+			'ucum': "10*3/uL",
+		})
+	if 'eGFR (ml/min)' in data:
+		low, high = data['eGFR (ml/min)'].split('-')
+		labs.append({
+			'loinc': "69405-9",
+			'display': "Glomerular filtration rate/1.73 sq M.predicted",
+			'text': "eGFR (ml/min)",
+			'low': low,
+			'high': high,
+			'ucum': "mL/min",
+		})
+	
+	data['labs'] = labs
+	return data
+
 def populate_meds(data):
 	meds = []
 	for med in [data.get('Chemo drug 1'), data.get('Chemo drug 2'), data.get('Chemo drug 3'), data.get('Endocrine therapy')]:
@@ -100,8 +132,10 @@ def populate_meds(data):
 	data['medications'] = meds
 	return data
 
-def render(template, **args):
-	print(template.render(rand_id=rand_id, **args))
+def render(template, data, **args):
+	d = data.copy()
+	d.update(args)
+	print(template.render(rand_id=rand_id, **d))
 	
 
 print('->  Reading "import-hca.csv"')
@@ -128,20 +162,21 @@ with io.open('import-hca.csv', 'r') as csvfile:
 			data = dict(zip(head, row))
 			data = populate_demographics(data)
 			data = populate_conditions(data)
-			data = populate_observations(data)
+			data = populate_mutations(data)
+			data = populate_labs(data)
 			data = populate_procedures(data)
 			data = populate_meds(data)
 			
-			render(tpl_patient, **data)
-			render(tpl_condition, **data)
-			for obs in data.get('observations', []):
-				data['observation'] = obs
-				render(tpl_observation, **data)
+			render(tpl_patient, data)
+			render(tpl_condition, data)
+			for obs in data.get('mutations', []):
+				render(tpl_observation, data, mutation=obs)
+			for obs in data.get('labs', []):
+				render(tpl_observation, data, lab=obs)
 			if data.get('procedure'):
-				render(tpl_procedure, **data)
+				render(tpl_procedure, data)
 			for med in data.get('medications', []):
-				data['medication'] = med
-				render(tpl_medpresc, **data)
+				render(tpl_medpresc, data, medication= med)
 			
 			break
 

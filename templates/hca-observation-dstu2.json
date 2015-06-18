@@ -4,6 +4,7 @@
 		"reference": "Patient/{{ pat_id }}",
 		"display": "{{ name.family }} {{ name.given }}"
 	},
+	{%- if mutation %}
 	"modifierExtension": [{
 		"url": "http://fhir-registry.smarthealthit.org/StructureDefinition/gene-expression-in",
 		"valueResource": {
@@ -14,13 +15,13 @@
 	"code": {
 		"coding": [{
 			"system": "http://www.genenames.org",
-			"code": "{{ observation.hgnc }}",
-			"display": "{{ observation.display }}"
+			"code": "{{ mutation.hgnc }}",
+			"display": "{{ mutation.display }}"
 		}],
-		"text": "{{ observation.text }}"
+		"text": "{{ mutation.text }}"
 	},
-	{%- if "HGNC:3430" == observation.hgnc %}
-	"valueString": "{{ observation.result }}",
+	{%- if "HGNC:3430" == mutation.hgnc %}
+	"valueString": "{{ mutation.result }}",
 	"method": {
 		"coding": [{
 			"system": "",
@@ -30,19 +31,50 @@
 	},
 	{%- else %}
 	"valueQuantity": {
-		"value": {{ observation.quantity }},
+		"value": {{ mutation.quantity }},
 		"units": "%",
 		"system": "http://unitsofmeasure.org",
 		"code": "%"
 	},
-	{%- endif %}
 	"interpretation": {
 		"coding": [{
 			"system": "http://hl7.org/fhir/v2/0078",
-			"code": "{% if 'Positive' == observation.result %}POS{% else %}{% if 'Negative' == observation.result %}NEG{% else %}IND{% endif %}{% endif %}",
-			"display": "{% if 'Positive' == observation.result %}Positive{% else %}{% if 'Negative' == observation.result %}Negative{% else %}Indeterminate{% endif %}{% endif %}"
+			"code": "{% if 'Positive' == mutation.result %}POS{% else %}{% if 'Negative' == mutation.result %}NEG{% else %}IND{% endif %}{% endif %}",
+			"display": "{% if 'Positive' == mutation.result %}Positive{% else %}{% if 'Negative' == mutation.result %}Negative{% else %}Indeterminate{% endif %}{% endif %}"
 		}]
 	},
+	{%- endif %}{% else %}
+	"code": {
+		"coding": [{
+			"system": "http://loinc.org",
+			"code": "{{ lab.loinc }}",
+			"display": "{{ lab.display }}"
+		}],
+		"text": "{{ lab.text }}"
+	},
+	{%- if lab.low %}
+	"valueRange": {
+		"low": {
+			"value": {{ lab.low }},
+			"units": "{{ lab.ucum }}",
+			"system": "http://unitsofmeasure.org",
+			"code": "{{ lab.ucum }}"
+		},
+		"high": {
+			"value": {{ lab.high }},
+			"units": "{{ lab.ucum }}",
+			"system": "http://unitsofmeasure.org",
+			"code": "{{ lab.ucum }}"
+		}
+	},
+	{%- else %}
+	"valueQuantity": {
+		"value": {{ lab.quantity }},
+		"units": "{{ lab.ucum }}",
+		"system": "http://unitsofmeasure.org",
+		"code": "{{ lab.ucum }}"
+	},
+	{%- endif %}{% endif %}
 	"status": "final",
 	"reliability": "ok"
 }
