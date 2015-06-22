@@ -249,7 +249,7 @@ if '__main__' == __name__:
 				bundles.append(bundle)
 				
 				if push_to is not None:
-					logging.debug("Pushing bundle to {}".format(row[0], push_to))
+					logging.debug("Pushing bundle for row {} to {}".format(row[0], push_to))
 					fhir_post_bundle(push_to, bundle)
 				else:
 					print("-->  Bundle\n{}\n".format(bundle))

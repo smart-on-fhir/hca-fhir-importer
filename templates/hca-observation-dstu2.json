@@ -8,7 +8,7 @@
 	{%- if lab.gene_expression %}
 	"modifierExtension": [{
 		"url": "http://fhir-registry.smarthealthit.org/StructureDefinition/gene-expression-in",
-		"valueResource": {
+		"valueReference": {
 			"reference": "Condition/{{ cond_id }}",
 			"display": "{{ condition.text }}"
 		}
