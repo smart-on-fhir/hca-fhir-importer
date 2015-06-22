@@ -177,6 +177,14 @@ def render(template, data, **args):
 	d.update(args)
 	return template.render(rand_id=rand_id, **d)
 
+def fhir_post_bundle(base_url, bundle):
+	try:
+		res = requests.post(base_url, headers={'Content-Type': 'application/json+fhir'}, data=bundle)
+		res.raise_for_status()
+	except Exception as e:
+		logging.error("Failed; failing Bundle was:\n{}".format(bundle))
+		raise e
+	
 def fhir_update(base_url, resource_type, resource):
 	try:
 		parsed = json.loads(resource)
@@ -184,7 +192,7 @@ def fhir_update(base_url, resource_type, resource):
 		res = requests.put(url, headers={'Content-Type': 'application/json+fhir'}, data=resource)
 		res.raise_for_status()
 	except Exception as e:
-		logging.error("Failing resource \"{}\" was:\n{}".format(resource_type, resource))
+		logging.error("Failed; failing resource \"{}\" was:\n{}".format(resource_type, resource))
 		raise e
 
 
@@ -197,9 +205,11 @@ if '__main__' == __name__:
 	with io.open('import-hca.csv', 'r') as csvfile:
 		f = csv.reader(csvfile)
 		head = None
+		bundles = []
 		
 		# Jinja2
 		tplenv = jinja2.Environment(loader=jinja2.PackageLoader(__name__, 'templates'))
+		tpl_bundle = tplenv.get_template('Bundle{}.json'.format(tpl_suffix))
 		tpl_patient = tplenv.get_template('hca-patient{}.json'.format(tpl_suffix))
 		tpl_condition = tplenv.get_template('hca-condition{}.json'.format(tpl_suffix))
 		tpl_observation = tplenv.get_template('hca-observation{}.json'.format(tpl_suffix))
@@ -234,16 +244,19 @@ if '__main__' == __name__:
 				for med in data.get('medications', []):
 					resources.append(('MedicationPrescription', render(tpl_medpresc, data, medication= med)))
 				
-				# push to FHIR server
-				if push_to is not None:
-					logging.debug("Pushing row {} to {}".format(row[0], push_to))
-					for typ, resource in resources:
-						fhir_update(push_to, typ, resource)
-				else:
-					for typ, resource in resources:
-						print("-->  {}\n{}\n".format(typ, json.loads(resource)))
+				# bundle up
+				bundle = tpl_bundle.render(bundle={'type': 'transaction', 'entries': [r[1] for r in resources]})
+				bundles.append(bundle)
 				
+				if push_to is not None:
+					logging.debug("Pushing bundle to {}".format(row[0], push_to))
+					fhir_post_bundle(push_to, bundle)
+				else:
+					print("-->  Bundle\n{}\n".format(bundle))
 				#break
+		
+		# create a master Bundle
+		#bundle = tpl_bundle.render(bundle={'type': 'transaction', 'entries': bundles})
 	
 	logging.debug('Done')
 
