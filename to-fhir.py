@@ -48,12 +48,12 @@ def populate_demographics(data, seed_num):
 	data['name'] = {}
 	if 'male' == data['Sex']:
 		seed(seed_num)
-		data['name']['given'] = names_males[round(rand()*(len(names_males)-1))]
+		data['name']['given'] = names_males[int(round(rand()*(len(names_males)-1)))]
 	else:
 		seed(seed_num)
-		data['name']['given'] = names_females[round(rand()*(len(names_females)-1))]
+		data['name']['given'] = names_females[int(round(rand()*(len(names_females)-1)))]
 	seed((seed_num + 3) * seed_num)
-	data['name']['family'] = names_family[round(rand()*(len(names_family)-1))]
+	data['name']['family'] = names_family[int(round(rand()*(len(names_family)-1)))]
 	return data
 
 def populate_conditions(data):
