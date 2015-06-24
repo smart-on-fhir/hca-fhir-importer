@@ -199,6 +199,7 @@ def fhir_update(base_url, resource_type, resource):
 if '__main__' == __name__:
 	logging.basicConfig(level=logging.DEBUG)
 	push_to = sys.argv[1] if len(sys.argv) > 1 else None
+	bundle_per_patient = False
 	
 	# read CSV
 	logging.debug('Reading "import-hca.csv"')
@@ -206,6 +207,7 @@ if '__main__' == __name__:
 		f = csv.reader(csvfile)
 		head = None
 		bundles = []
+		resources = []
 		
 		# Jinja2
 		tplenv = jinja2.Environment(loader=jinja2.PackageLoader(__name__, 'templates'))
@@ -223,7 +225,6 @@ if '__main__' == __name__:
 			
 			# one row, one patient
 			else:
-				resources = []
 				logging.debug("Processing row {}".format(row[0]))
 				data = dict(zip(head, row))
 				data = populate_demographics(data, int(row[0]))
@@ -251,12 +252,14 @@ if '__main__' == __name__:
 				if push_to is not None:
 					logging.debug("Pushing bundle for row {} to {}".format(row[0], push_to))
 					fhir_post_bundle(push_to, bundle)
-				else:
-					print("-->  Bundle\n{}\n".format(bundle))
+				elif bundle_per_patient:
+					print(bundle)
 				#break
 		
 		# create a master Bundle
-		#bundle = tpl_bundle.render(bundle={'type': 'transaction', 'entries': bundles})
+		if not bundle_per_patient:
+			bundle = tpl_bundle.render(bundle={'type': 'transaction', 'entries': [r[1] for r in resources]})
+			print(bundle)
 	
 	logging.debug('Done')
 
