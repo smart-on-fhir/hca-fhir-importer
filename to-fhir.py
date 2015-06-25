@@ -9,7 +9,10 @@ import uuid
 import jinja2
 import logging
 import datetime
-import requests
+try:
+	import requests
+except ImportError as e:
+	pass
 
 from random import random as rand, seed as seed
 
