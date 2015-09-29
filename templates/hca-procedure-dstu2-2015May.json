@@ -1,12 +1,12 @@
 {
 	"resourceType": "Procedure",
 	"id": "hca-pro-{{ rand_id() }}",
-	"subject": {
+	"patient": {
 		"reference": "Patient/{{ pat_id }}",
 		"display": "{{ name.family }} {{ name.given }}"
 	},
 	"status": "completed",
-	"code": {
+	"type": {
 		"coding": [{
 			"system": "http://snomed.info/sct",
 			"code": "{{ procedure.snomed }}",

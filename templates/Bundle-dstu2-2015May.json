@@ -1,0 +1,10 @@
+{
+	"resourceType": "Bundle",
+	"type": "{{ bundle.type }}"{% if bundle.entries %},
+	"entry": [
+	{%- for entry in bundle.entries %}{
+		"resource": {{ entry|indent(8)|replace('    ', '	') }}
+	}{% if not loop.last %},{% endif %}
+	{%- endfor %}
+	]{% endif %}
+}

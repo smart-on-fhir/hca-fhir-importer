@@ -27,14 +27,14 @@
 		{%- if lab.low %}
 		"low": {
 			"value": {{ lab.low }},
-			"unit": "{{ lab.ucum }}",
+			"units": "{{ lab.ucum }}",
 			"system": "http://unitsofmeasure.org",
 			"code": "{{ lab.ucum }}"
 		}
 		{%- endif %}{% if lab.high %}{% if lab.low %},{% endif %}
 		"high": {
 			"value": {{ lab.high }},
-			"unit": "{{ lab.ucum }}",
+			"units": "{{ lab.ucum }}",
 			"system": "http://unitsofmeasure.org",
 			"code": "{{ lab.ucum }}"
 		}
@@ -43,7 +43,7 @@
 	{%- else %}{% if lab.quantity %}
 	"valueQuantity": {
 		"value": {{ lab.quantity }},
-		"unit": "{{ lab.ucum }}",
+		"units": "{{ lab.ucum }}",
 		"system": "http://unitsofmeasure.org",
 		"code": "{{ lab.ucum }}"
 	},

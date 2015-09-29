@@ -219,7 +219,8 @@ if '__main__' == __name__:
 		tpl_condition = tplenv.get_template('hca-condition{}.json'.format(tpl_suffix))
 		tpl_observation = tplenv.get_template('hca-observation{}.json'.format(tpl_suffix))
 		tpl_procedure = tplenv.get_template('hca-procedure{}.json'.format(tpl_suffix))
-		tpl_medpresc = tplenv.get_template('hca-medicationprescription{}.json'.format(tpl_suffix))
+		#tpl_medpresc = tplenv.get_template('hca-medicationprescription{}.json'.format(tpl_suffix))
+		tpl_medpresc = tplenv.get_template('hca-medicationorder{}.json'.format(tpl_suffix))
 		
 		# loop
 		for row in f:

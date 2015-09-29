@@ -1,0 +1,17 @@
+{
+	"resourceType": "MedicationOrder",
+	"id": "hca-mpr-{{ rand_id() }}",
+	"patient": {
+		"reference": "Patient/{{ pat_id }}",
+		"display": "{{ name.family }} {{ name.given }}"
+	},
+	"medicationCodeableConcept": {
+		"coding": [{
+			"system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+			"code": "{{ medication.rxcui }}",
+			"display": "{{ medication.display }}"
+		}],
+		"text": "{{ medication.text }}"
+	},
+	"status": "active"
+}

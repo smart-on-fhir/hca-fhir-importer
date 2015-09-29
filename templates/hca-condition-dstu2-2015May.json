@@ -14,8 +14,7 @@
 		}],
 		"text": "{{ condition.text }}"
 	},
-	"clinicalStatus": "active",
-	"verificationStatus": "confirmed",
+	"clinicalStatus": "confirmed",
 	"category": {
 		"coding": [{
 			"system": "http://snomed.info/sct",
