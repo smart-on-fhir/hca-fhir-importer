@@ -1,6 +1,22 @@
 {
 	"resourceType": "Patient",
 	"id": "{{ pat_id }}",
+	"identifier": [{
+	      "use": "usual",
+	      "type": {
+	        "coding": [
+	          {
+	            "system": "http://hl7.org/fhir/v2/0203",
+	            "code": "MR",
+	            "display": "Medical record number"
+	          }
+	        ],
+	        "text": "Medical record number"
+	      },
+	      "system": "http://hospital.smarthealthit.org",
+	      "value": "{{ pat_id }}"
+	}],
+	"active": true,
 	"name": [{
 		"family": ["{{ name.family }}"],
 		"given": ["{{ name.given }}"]
